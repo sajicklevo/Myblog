@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+ {% block no_bootstrap_content %}
+<h2 class="text-login">Список статей</h2>
+<div>
+                {% for el in posts %}
+                    <div class="flex_body-child">
+                       <li> <a href="{{ url_for('view_post', post_id=el.id) }}"> {{ el.description }} </a></li>
+
+                    </div>
+                {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+
+{% block no_bootstrap_content %}
+<div class="flex_clients">
+    <h1>Статья {{post.description}}</h1>
+    </div>
+    <div class="flex_clients">
+        <form method="post">
+        <p>{{ post.text }}</p>
+            {% if current_user.is_anonymous %}
+               <p>Чтобы иметь возможность редактировать статью или добавлять оценку или коментарии - зарегистрируйтесь</p>
+          {% else %}
+            <li><a href="{{ url_for('update_post', post_id=post.id) }}"> Изменить статью</a></li>
+                <li><a href="{{ url_for('delete_post', post_id=post.id) }}"> Удалить статью</a></li>
+                 <li><p>Ваш комментарий {{comment_form.text}}</p></li>
+                   <p>Сохранить комментарий {{comment_form.create_comment}}</p>
+                    <li><p>Ваш комментарий {{comment_form.text}}</p></li>
+                   <li><option>Оценить статью {{rating_form.example_select}}</option> </li>
+                 <p>Сохранить оценку {rating_form.create_rating}}</p>
+          {% endif %}
+        </form>
+    </div>
+     <div class="flex_clients">
+    <h2>Комментарии</h2>
+    <ul>
+        {% if comments %}
+                {% for el in comment %}
+                            <li>{{ el.text }}</li>
+                            {% if current_user.is_anonymous %}
+                                   <br>
+                            {% else %}
+                               <li><a href="{{ url_for('delete_comment', comment_id=el.id) }}"> Удалить комментарий</a></li>
+                            {% endif %}
+                {% endfor %}
+        {% else %}
+         <p>Комментарии отсутствуют</p>
+        {% endif %}
+    </ul>
+    </div>
+    <div class="flex_clients">
+     <h2>Рейтинг</h2>
+        {% if avg_rating is none %}
+        <p>Статья еще не оценена {{avg_rating}}</p>
+        {% else %}
+        <p>Средний рейтинг статьи {{avg_rating}}</p>
+        {% endif %}
+    <a href="/">Вернуться в статьям</a>
+    </div>
+
+{% endblock %}

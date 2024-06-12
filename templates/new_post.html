@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+
+ {% block no_bootstrap_content %}
+    <h1>Новая статья</h1>
+    {{form.descriptionPost}}
+    {{form.textPost}}
+    {{form.create_post}}
+    <a href="/">Вернуться в статьям</a>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+
+{% block no_bootstrap_content %}
+<div class="flex_clients">
+    <h1>Регистрация</h1>
+    <form method="post">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.username.label }}
+            {{ form.username }}
+        </div>
+        <div>
+            {{ form.password.label }}
+            {{ form.password }}
+        </div>
+        <div>
+            {{ form.password2.label }}
+            {{ form.password2 }}
+        </div>
+        <div>
+            {{ form.submit }}
+        </div>
+    </form>
+    <a href="/">Вернуться к статьям</a>
+</div>
+{% endblock %}
